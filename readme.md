@@ -1,6 +1,6 @@
 # CodeIgniter4 sentry
 
-1. sentry/sdk install
+1. sentry/sdk install  
 `$ composer require sentry/sdk`
 2. Modify `app/config/Autoload.php`
 ```
