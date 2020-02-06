@@ -1,6 +1,6 @@
 # CodeIgniter4 sentry
 
-1. composer require sentry/sdk
+1. `$ composer require sentry/sdk`
 2. Modify `app/config/Autoload.php`
 ```
 $classmap = [
