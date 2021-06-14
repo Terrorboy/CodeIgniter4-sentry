@@ -1,6 +1,6 @@
 <?php namespace CodeIgniter\Log;
 
-define('sentryDSN', '__DSN__');
+define('sentryDSN', 'https://4c96d099ced547a0a2e3a0c41b20b968@o66420.ingest.sentry.io/141354');
 
 use Psr\Log\LoggerInterface;
 use CodeIgniter\Log\Exceptions\LogException;
@@ -86,6 +86,7 @@ class Logger implements LoggerInterface
         if (defined('sentryDSN') === true) {
             if (sentryDSN != '__DSN__') {
                 \Sentry\init(['dsn' => sentryDSN ]);
+                \Sentry\captureLastError();
             }
         }
     }
