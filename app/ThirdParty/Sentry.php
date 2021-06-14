@@ -91,7 +91,7 @@ class Logger implements LoggerInterface
 		if(defined('sentryDSN') === true) {
             if(sentryDSN != '__DSN__') {
                 \Sentry\init(['dsn' => sentryDSN ]);
-                \Sentry\captureLastError();
+                //\Sentry\captureLastError();
             }
 		}
 	}
@@ -272,6 +272,20 @@ class Logger implements LoggerInterface
 				'msg'   => $message,
 			];
 		}
+        if(defined('sentryDSN') === true) {
+            \Sentry\withScope(function (\Sentry\State\Scope $scope) use ($level, $message): void {
+                if(in_array($level, ['alert', 'notice', 'info'])) {
+                    $scope->setLevel(\Sentry\Severity::info());
+                } elseif($level == 'debug') {
+                    $scope->setLevel(\Sentry\Severity::debug());
+                } elseif($level == 'error') {
+                    $scope->setLevel(\Sentry\Severity::error());
+                } else {
+                    $scope->setLevel(\Sentry\Severity::warning());
+                }
+                \Sentry\captureMessage($message);
+            });
+        }
 
 		foreach ($this->handlerConfig as $className => $config)
 		{
