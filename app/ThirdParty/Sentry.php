@@ -1,6 +1,6 @@
 <?php namespace CodeIgniter\Log;
 
-define('sentryDSN', 'https://4c96d099ced547a0a2e3a0c41b20b968@o66420.ingest.sentry.io/141354');
+define('sentryDSN', '__DSN__');
 
 use Psr\Log\LoggerInterface;
 use CodeIgniter\Log\Exceptions\LogException;
